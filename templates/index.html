@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dados do Banco</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1>Dados da Tabela</h1>
+
+    <form method="GET" action="/">
+        <label for="data_venda">Data: </label>
+        <input type="date" name="data_venda" id="data_venda">
+
+        <label for="produto">Produto: </label>
+        <input type="text" name="produto" id="produto" placeholder="Nome do produto">
+
+        <label for="cliente">Cliente: </label>
+        <input type="text" name="cliente" id="cliente" placeholder="Nome do cliente">
+
+        <button type="submit">Buscar</button>
+        <a href="/">
+            <button type="button">Limpar Filtros</button>
+        </a>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                {% if dados %}
+                    {% for chave in dados[dados|list|first].keys() %}
+                        <th>{{ chave }}</th>
+                    {% endfor %}
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in dados.values() %}
+                <tr>
+                    {% for valor in item.values() %}
+                        <td>{{ valor }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
