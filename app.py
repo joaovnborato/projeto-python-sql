@@ -6,8 +6,8 @@ app = Flask(__name__)
 def conectar_banco():
     dados_conexao = (
         "Driver={SQL Server};"
-        "Server=DESKTOP-PUV1CSV;"
-        "Database=Test_Base_Py;"
+        "Server=NOME_host;"
+        "Database=NOME_DO_BANCO;"
     )
 
     try:
@@ -30,7 +30,7 @@ def index():
 
     if conexao:
         cursor = conexao.cursor()
-        query = """SELECT * FROM Vendas WHERE 1=1"""
+        query = """SELECT * FROM Nome_da_Tabela WHERE 1=1"""
         parametros = []
 
         if data:
@@ -66,17 +66,3 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 
-'''  ALGORITMO DE INSERÇÃO'
-'
-id = 7
-cliente = "Diabo Junior"
-produto = "Carro"
-data = "02/04/2025"
-preco = 2000
-quantidade = 1
-
-comando_insercao = f"""INSERT INTO Vendas(id_venda, cliente, produto, data_venda, preco, quantidade)
-VALUES
-    ({id}, '{cliente}', '{produto}', '{data}', {preco}, {quantidade})"""
-
-'''
